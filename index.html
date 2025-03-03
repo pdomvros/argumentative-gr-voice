@@ -94,6 +94,24 @@
             color: #000;
             box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
         }
+        /* Dropdown styling */
+        .dropdown {
+            display: none;
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #222222;
+            border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .dropdown ol {
+            padding-left: 20px;
+        }
+        .dropdown ol li {
+            margin-bottom: 10px;
+        }
+        .dropdown-button {
+            margin-top: 10px;
+        }
         /* Popup styling */
         .overlay {
             display: none;
@@ -152,7 +170,24 @@
     <!-- Buttons row -->
     <button class="button" onclick="generateTopic()">🎲 Δημιουργία Τυχαίου Θέματος</button>
     <button class="button" onclick="openPopup()">📚 Γλωσσική Βοήθεια</button>
-    <button class="button" onclick="openGoogleDocs()">🎤 Φωνητική Εισαγωγή με Google Docs</button>
+    <button class="button" onclick="toggleDropdown()">🎤 Φωνητική Καταγραφή</button>
+
+    <!-- Dropdown with instructions -->
+    <div id="dropdown" class="dropdown">
+        <h3>Οδηγίες για Φωνητική Καταγραφή</h3>
+        <ol>
+            <li>Πατήστε το κουμπί "Άνοιγμα Google Docs" παρακάτω.</li>
+            <li>Στο Google Docs, επιλέξτε <strong>Ελληνικά</strong> ως γλώσσα:
+                <ul>
+                    <li>Μεταβείτε στο μενού <strong>Εργαλεία > Φωνητική εισαγωγή > Γλώσσα</strong>.</li>
+                    <li>Επιλέξτε <strong>Ελληνικά</strong>.</li>
+                </ul>
+            </li>
+            <li>Χρησιμοποιήστε τη φωνητική καταγραφή για να γράψετε το κείμενό σας.</li>
+            <li>Αντιγράψτε το κείμενο και επικολλήστε το στο πεδίο "Συγγραφή Δοκιμίου" παρακάτω.</li>
+        </ol>
+        <button class="button dropdown-button" onclick="openGoogleDocs()">Άνοιγμα Google Docs</button>
+    </div>
 
     <div class="section topic-section">
         <h2>📌 Θέμα</h2>
@@ -252,10 +287,15 @@
         // Προσθέστε περισσότερα θέματα εδώ...
     ];
 
+    // Δείχνει/κρύβει το dropdown με τις οδηγίες
+    function toggleDropdown() {
+        const dropdown = document.getElementById('dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
     // Άνοιγμα Google Docs
     function openGoogleDocs() {
         window.open('https://docs.google.com/document/d/1OsQcE2o9smlnDGjVAcBbBpE2sfPVU9Fv9S641y-rfvg/edit?usp=sharing', '_blank');
-        alert('Παρακαλώ επιλέξτε "Ελληνικά" ως γλώσσα στο Google Docs (Εργαλεία > Φωνητική εισαγωγή > Γλώσσα).');
     }
 
     function generateTopic() {
